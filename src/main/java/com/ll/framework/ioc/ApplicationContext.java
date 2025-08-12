@@ -65,6 +65,7 @@ public class ApplicationContext {
                 dependencies[i] = beans.get(dependencyBeanName);
             }
 
+
             // 4. 리플렉션으로 객체를 생성하고 맵에 저장합니다.
             Object beanInstance = constructor.newInstance(dependencies);
             beans.put(beanName, beanInstance);
