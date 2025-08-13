@@ -38,10 +38,12 @@ public class ApplicationContext {
                 var paramTypes = constructor.getParameterTypes();
                 Object[] params = new Object[paramTypes.length];
 
-                for(int i = 0; i < paramTypes.length; i ++) {
-                    String depName = paramTypes[i].getSimpleName();
+                for(int i = 0; i < paramTypes.length; i++) {
+                    String depName = Character.toLowerCase(paramTypes[i].getSimpleName().charAt(0))
+                            + paramTypes[i].getSimpleName().substring(1);
                     params[i] = beans.get(depName);
                 }
+
 
                 beans.put(beanName, constructor.newInstance(params));
             } catch(Exception e) {
