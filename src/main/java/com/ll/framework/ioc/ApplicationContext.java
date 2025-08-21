@@ -1,5 +1,7 @@
 package com.ll.framework.ioc;
 
+import lombok.SneakyThrows;
+
 import java.lang.reflect.Constructor;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -11,8 +13,8 @@ public class ApplicationContext {
     public ApplicationContext(String basePackage) {
     }
 
+    @SneakyThrows
     public void init() {
-        try {
             Class<?> testPostRepositoryClass = Class.forName("com.ll.domain.testPost.testPost.repository.TestPostRepository");
             Class<?> testPostServiceClass = Class.forName("com.ll.domain.testPost.testPost.service.TestPostService");
             Class<?> testFacadePostServiceClass = Class.forName("com.ll.domain.testPost.testPost.service.TestFacadePostService");
@@ -35,10 +37,6 @@ public class ApplicationContext {
 
             Object testFacadePostService = testFacadePostServiceConstructor.newInstance(dependencies);
             beanMap.put("testFacadePostService", testFacadePostService);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private Object findBeanByType(Class<?> type) {
